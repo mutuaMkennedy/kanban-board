@@ -1,0 +1,2 @@
+Common folder here will house all components, utility classes, hooks etc that 
+are reused across our project
