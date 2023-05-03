@@ -1,0 +1,11 @@
+Modules folder will contain all connected functionality in our app
+Examples if these modules are:
+
+- Authentication Module i.e Auth
+- Notifications Module
+- User Management Module
+- 3RD Party modules eg Sentry, Twilio etc
+
+The main idea is to categorize the app functionality that is related to each other to 
+one module.
+
