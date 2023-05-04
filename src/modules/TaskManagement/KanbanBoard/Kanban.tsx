@@ -1,9 +1,11 @@
 import React from "react";
-
+import { ActionBar } from "@/common/components/ActionBar";
 
 const Kanban: React.FC = () => {
     return(
-        <h1>Kanban Here</h1>
+        <>
+            <ActionBar/>
+        </>
     )
 }
 
