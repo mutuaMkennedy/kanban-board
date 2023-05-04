@@ -1,0 +1,32 @@
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 0;
+}
+
+.wrapper__logo{
+    width:100px;
+    height:32px;
+    position: relative;   
+}
+
+.wrapper__logo img{
+    width:100px;
+    height: 100%;
+
+}
+
+.wrapper__menu ul{
+    display: flex;
+    align-items: center;
+
+}
+
+.wrapper__menu ul li{
+    list-style: none;
+    margin-left: 10px;
+}
