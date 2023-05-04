@@ -1,0 +1,23 @@
+.trigger{
+    padding: 7px 25px;
+    background-color: transparent;
+    border: 1px solid #d1d1d1;
+    color:#000;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    transition: padding 0.5s ease;
+}
+
+.icon{
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+.trigger:hover{
+    cursor: pointer;
+    background-color: #f5f5f5;
+    padding-left:25px;
+    padding-right: 25px;
+    transition: padding 0.5s ease;
+}
