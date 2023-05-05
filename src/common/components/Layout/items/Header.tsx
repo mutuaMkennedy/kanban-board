@@ -9,17 +9,19 @@ const Header: React.FC = () => {
         <nav>
             <div className={headerStyles.wrapper}>
                 <div className={headerStyles.wrapper__logo}>
-                    <Image
-                    src="/images/logo-b.png"
-                    fill
-                    alt="Kanban"
-                    />
+                    <Link href="/">
+                        <Image
+                        src="/images/logo-b.png"
+                        fill
+                        alt="Kanban"
+                        />
+                    </Link>
                 </div>
                 <div className={headerStyles.wrapper__menu}>
                     <ul>
-                        <li><Link href="/index">Home</Link></li>
+                        <li><Link href="/">Home</Link></li>
                         {/* TO DO: Create page */}
-                        <li><Link href="/tasks">My tasks</Link></li>
+                        <li><Link href="/workspace/tasks">My tasks</Link></li>
                     </ul>
                 </div>
             </div>
