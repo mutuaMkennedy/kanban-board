@@ -1,0 +1,8 @@
+.Backlog{
+
+}
+
+.BacklogList{
+    display: flex;
+    flex-direction: column;
+}
