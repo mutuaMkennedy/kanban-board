@@ -3,7 +3,11 @@ import { Icon } from "@iconify/react";
 import styles from "@/common/components/ActionBar/styles/CreateTask.module.css";
 
 
-const CreateTaskModal: React.FC = () => {
+interface CreateTaskModal{
+    setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
     const [disableSubmit, setDisableSubmit] = React.useState<boolean>(true);
 
     const handleChange:React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -14,13 +18,17 @@ const CreateTaskModal: React.FC = () => {
         };
     };
 
+    const closeModal: React.MouseEventHandler<HTMLButtonElement>  = (e) => {
+        setOpenModal(false);
+    }
+
     return(
         <div className={styles.modal}>
             <div className={styles.innerModal}>
                 <div className={styles.head}>
                     <h2>Create tasks</h2>
-                    <button type="button">
-                        <Icon icon="carbon:close"className={styles.iconClose}/>
+                    <button type="button" onClick={closeModal}>
+                        <Icon icon="carbon:close" className={styles.iconClose}/>
                     </button>
                 </div>
                 <div className={styles.body}>
@@ -59,7 +67,7 @@ const CreateTask: React.FC = () => {
             </button>
             {
                 openModal ? (
-                    <CreateTaskModal/>
+                    <CreateTaskModal setOpenModal={setOpenModal}/>
                 ) : ""
             }
 
