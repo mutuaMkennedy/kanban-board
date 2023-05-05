@@ -1,10 +1,10 @@
 import React from "react";
-import { ActionBar } from "@/common/components/ActionBar";
+import utilsStyles from "@/styles/utils.module.css";
 
 const Kanban: React.FC = () => {
     return(
         <>
-            <ActionBar/>
+            <h2 className={utilsStyles.headingSection}>Your Board</h2>
         </>
     )
 }
