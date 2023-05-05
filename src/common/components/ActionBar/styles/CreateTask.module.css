@@ -123,10 +123,17 @@
     width: 100%;
     padding: 15px 10px;
     border-radius: 5px;
-    color:#fff;
+    color:#1100ff;
     font-size: 1rem;
-    background-color: #1100ff;
+    background-color: transparent;
     border: 2px solid #1100ff;
+    cursor: pointer;
+}
+
+.form button:hover{
+    cursor: pointer;
+    background-color: #1100ff;
+    color: #fff;
 }
 
 .form button:disabled{
@@ -136,5 +143,9 @@
 }
 
 .form button:disabled:focus{
-    border-color:rgb(188, 255, 255);   
+    border-color:rgb(188, 255, 255); 
+}
+
+.form button:disabled:hover{  
+    cursor:not-allowed;
 }
