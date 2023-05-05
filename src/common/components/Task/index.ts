@@ -1,0 +1,1 @@
+export {default as TaskComponent} from "@/common/components/Task/Task";
