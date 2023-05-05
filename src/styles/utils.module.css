@@ -2,3 +2,7 @@
 Utility classNames we use to maintain consistency on common
 elements.
 */
+
+.headingSection{
+    font-size:1.25rem;
+}
