@@ -22,8 +22,37 @@
     background-color: rgba(0, 255, 255, 0.082);
 }
 
-
 .body p{
     font-weight: normal;
     font-size: 0.7rem;
+}
+
+.footer{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2px 15px;
+}
+
+.footer button{
+    background-color: transparent;
+    padding: 5px;
+    width: 24px;
+    height: 24px;
+    border-width:1px;
+    border-color: transparent;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer svg{
+    color:#c4c4c4;
+}
+
+.footer button:hover,
+.footer button:hover svg{
+    border-color:#f10000;
+    color:#f10000;
+    cursor: pointer;
 }
