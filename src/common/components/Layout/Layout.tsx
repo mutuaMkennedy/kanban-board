@@ -60,6 +60,7 @@ const Layout: React.FC<LayoutProps> = ({children}) => {
         state where needed
     */ 
     const updateTasks = (tasks: TaskItemObject) => {
+        // TO DO: tasks not being assigned defaults when deleted
         setMyTasks(tasks);
         window.localStorage.setItem("tasks", JSON.stringify(tasks));
       };
