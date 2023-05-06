@@ -1,21 +1,13 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import BouncingDots  from "@/common/components/Loaders/BouncingDots";
-import { TasksContext } from "@/common/components/Layout/Layout";
+import { TaskItem, TasksContext } from "@/common/components/Layout/Layout";
 import styles from "@/common/components/ActionBar/styles/CreateTask.module.css";
 
 
 interface CreateTaskModal{
     setOpenModal: React.Dispatch<React.SetStateAction<boolean>>
 }
-
-interface Task {
-    summary:string,
-    description:string
-}
-
-type Tasks =  Task[]
-
 
 const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
 
@@ -25,10 +17,10 @@ const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
     const [submitting,setSubmitting] = React.useState<boolean>(false)
 
     // Task management
-    const [task,setTask] = React.useState<Task>({summary:"", description:""})
+    const [task,setTask] = React.useState<TaskItem>({id:0,summary:"", description:""})
 
     // Access TaskContext we will use to update tasks which will be picked by all child components
-    const Tasks = React.useContext(TasksContext)
+    let Tasks = React.useContext(TasksContext)
 
     const handleChange:React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
         const { name, value } = e.target;
@@ -36,11 +28,10 @@ const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
                 {
                 ...prevTask,
                 [name]: value,
+                id:Tasks.myTasks.length + 1
                 }
             )
         );
-
-        console.log(task)
 
         // Disable submit button until the form fields have some data
         if(task.summary.length >= 3 && task.description.length >= 3 ){
@@ -59,7 +50,7 @@ const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
     const createTask: React.FormEventHandler<HTMLFormElement> = (e) =>{
         e.preventDefault();
         setSubmitting(true);
-        setDisableSubmit(true)
+        setDisableSubmit(true);
 
         // Access TaskContext's values
         // append existing tasks with the newly added task
@@ -68,7 +59,7 @@ const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
         Tasks.setMyTasks(newTasks)
 
         // reset the input boxes
-        setTask({ summary: '', description: '' });
+        setTask({ id:0, summary: '', description: '' });
 
         // No major reason to do this, just a small delay to show the user something is happening
         setTimeout(() => {
