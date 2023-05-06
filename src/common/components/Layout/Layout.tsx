@@ -9,12 +9,13 @@ interface LayoutProps {
     children: React.ReactNode
 };
 
-interface TaskItem {
+export interface TaskItem {
+    id:number,
     summary: string,
     description: string
 };
 
-type TaskItemObject = TaskItem[];
+export type TaskItemObject = TaskItem[];
 
 // Shape of context value prop
 interface TaskContextType{
@@ -26,6 +27,7 @@ export const TasksContext = React.createContext<TaskContextType>(
             {
                 myTasks: [
                     {
+                        id:1,
                         summary:"Default Task",
                         description:"A description of a default task"
                     }
@@ -48,6 +50,7 @@ const Layout: React.FC<LayoutProps> = ({children}) => {
         } else {
             setMyTasks([
                 {
+                    id:1,
                     summary:"Default Task",
                     description:"A description of a default task"
                 }
