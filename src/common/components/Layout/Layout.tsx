@@ -7,22 +7,77 @@ import styles from "@/common/components/Layout/styles/Layout.module.css";
 
 interface LayoutProps {
     children: React.ReactNode
+};
+
+interface TaskItem {
+    summary: string,
+    description: string
+};
+
+type TaskItemObject = TaskItem[];
+
+// Shape of context value prop
+interface TaskContextType{
+    myTasks:TaskItemObject,
+    setMyTasks: (tasks:TaskItemObject) => void;
 }
+
+export const TasksContext = React.createContext<TaskContextType>(
+            {
+                myTasks: [
+                    {
+                        summary:"Default Task",
+                        description:"A description of a default task"
+                    }
+                ],
+                setMyTasks:() => {}
+            }
+        )
 
 const Layout: React.FC<LayoutProps> = ({children}) => {
     
+    const [myTasks, setMyTasks] = React.useState<TaskItemObject>([])
+
+    // Prevent component from trying to access the window before its available,
+    // Check error:- ReferenceError: window is not defined
+    React.useEffect(()=>{
+        let storedTasks = window.localStorage.getItem("tasks");
+
+        if (storedTasks){
+            setMyTasks(JSON.parse(storedTasks))
+        } else {
+            setMyTasks([
+                {
+                    summary:"Default Task",
+                    description:"A description of a default task"
+                }
+            ])
+        }
+    },[]);
+
+    /*
+        We will pass this function to child components so that we can update the
+        state where needed
+    */ 
+    const updateTasks = (tasks: TaskItemObject) => {
+        setMyTasks(tasks);
+        window.localStorage.setItem("tasks", JSON.stringify(tasks));
+      };
+
     return(
         <>
+        <TasksContext.Provider value={{myTasks,setMyTasks: updateTasks}}>
             <Header/>
-            <main>
-                <div className={styles.container}>
-                    <div className={styles.container__inner}>
-                        <ActionBar/>
-                        {children}
+                <main>
+                    <div className={styles.container}>
+                        <div className={styles.container__inner}>
+                            <ActionBar/>
+                            {children}
+                        </div>
                     </div>
-                </div>
-            </main>
-            <Footer/>
+                </main>
+                <Footer/>
+        </TasksContext.Provider>
         </>
     )
 }
