@@ -1,14 +1,16 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import styles from "@/common/components/ActionBar/styles/DeleteTasks.module.css"
+import { TasksContext } from "@/common/components/Layout/Layout";
 
 const DeleteTasks:React.FC = () => {
+    const tasksContext = React.useContext(TasksContext);
 
     const deleteTasks:React.MouseEventHandler<HTMLButtonElement>  = (e) =>{
-        let tasks = window.localStorage.getItem("tasks");
 
-        if (tasks != ''){
-            window.localStorage.removeItem("tasks");
+        if (tasksContext.myTasks){
+            // remove tasks from state
+            tasksContext.setMyTasks([])
         }
     }
 
