@@ -37,11 +37,17 @@ const TaskComponent: React.FC = () => {
     //     )
     // },[])
 
+    // Delete task from array
+    const deleteTask = (taskID:number) => {
+        const newTasks = Tasks.myTasks.filter((task) => task.id !== taskID);
+        Tasks.setMyTasks(newTasks);
+    }
+
     return(
         <>
             {
                 Tasks.myTasks.map((task, index)=>(
-                    <div key={index} className={styles.task}>
+                    <div key={task.id} className={styles.task}>
                         <div className={styles.head}>
                             <h6>{task.summary}</h6>
                             <Icon icon="carbon:chevron-down"/>
@@ -50,7 +56,7 @@ const TaskComponent: React.FC = () => {
                             <p>{task.description}</p>
                         </div>
                         <div className={styles.footer}>
-                            <button type="button">
+                            <button type="button" onClick={() => deleteTask(task.id)}>
                                 <Icon icon="carbon:trash-can"/>
                             </button>
                         </div>
