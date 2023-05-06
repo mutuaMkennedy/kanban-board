@@ -1,6 +1,7 @@
 import React from "react";
 import { Icon } from "@iconify/react";
 import BouncingDots  from "@/common/components/Loaders/BouncingDots";
+import { TasksContext } from "@/common/components/Layout/Layout";
 import styles from "@/common/components/ActionBar/styles/CreateTask.module.css";
 
 
@@ -25,7 +26,9 @@ const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
 
     // Task management
     const [task,setTask] = React.useState<Task>({summary:"", description:""})
-    const [tasks,setTasks] = React.useState<Tasks>(JSON.parse(window.localStorage.getItem("tasks") ?? "[]"))
+
+    // Access TaskContext we will use to update tasks which will be picked by all child components
+    const Tasks = React.useContext(TasksContext)
 
     const handleChange:React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (e) => {
         const { name, value } = e.target;
@@ -58,10 +61,16 @@ const CreateTaskModal: React.FC<CreateTaskModal> = ({setOpenModal}) => {
         setSubmitting(true);
         setDisableSubmit(true)
 
-        const newTasks = [...tasks, task];
-        setTasks(newTasks);
-        window.localStorage.setItem('tasks', JSON.stringify(newTasks));
+        // Access TaskContext's values
+        // append existing tasks with the newly added task
+        const newTasks = [...Tasks.myTasks, task];
+        // access the update tasks function and update our tasks
+        Tasks.setMyTasks(newTasks)
+
+        // reset the input boxes
         setTask({ summary: '', description: '' });
+
+        // No major reason to do this, just a small delay to show the user something is happening
         setTimeout(() => {
             setSubmitting(false);
         }, 1000);
