@@ -6,3 +6,12 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.right{
+    display: flex;
+    align-items: center;
+}
+
+.right :not(:first-child){
+    margin-left: 5px;
+}
